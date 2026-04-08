@@ -1,0 +1,160 @@
+:root {
+    /* Light Mode Variables */
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+    --card-background: #ffffff;
+    --card-border: #e9ecef;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --primary-color: #4CAF50;
+    --primary-hover: #45a049;
+    --secondary-text: #6c757d;
+    --row-bg: #f1f3f5;
+    
+    /* Ball Colors (Remain consistent but can be adjusted) */
+    --ball-n1: #fbc400;
+    --ball-n11: #69c8f2;
+    --ball-n21: #ff7285;
+    --ball-n31: #aaaaaa;
+    --ball-n41: #b0d840;
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Variables */
+    --background-color: #121212;
+    --text-color: #f8f9fa;
+    --card-background: #1e1e1e;
+    --card-border: #333333;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --secondary-text: #adb5bd;
+    --row-bg: #252525;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.lotto-container {
+    background: var(--card-background);
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--card-border);
+    max-width: 500px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 16px;
+    background: var(--row-bg);
+    transition: all 0.3s ease;
+}
+
+.row:last-child {
+    margin-bottom: 0;
+}
+
+.label {
+    font-weight: 600;
+    margin-right: 15px;
+    min-width: 60px;
+    color: var(--secondary-text);
+    font-size: 14px;
+}
+
+.balls-container {
+    display: flex;
+    gap: 8px;
+}
+
+.ball {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.ball:hover {
+    transform: translateY(-2px);
+}
+
+.n1 { background-color: var(--ball-n1); }
+.n11 { background-color: var(--ball-n11); }
+.n21 { background-color: var(--ball-n21); }
+.n31 { background-color: var(--ball-n31); }
+.n41 { background-color: var(--ball-n41); }
+
+.generate-btn {
+    margin-top: 30px;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.generate-btn:active {
+    transform: translateY(0);
+}
