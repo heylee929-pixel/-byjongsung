@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 추천기</title>
+    <style>
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 450px;
+        }
+        h1 { color: #333; margin-bottom: 30px; }
+        .lotto-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .ball {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+        /* 번호대별 색상 규정 */
+        .ball-1 { background: #fbc400; }  /* 1~10: 노랑 */
+        .ball-11 { background: #69c8f2; } /* 11~20: 파랑 */
+        .ball-21 { background: #ff7272; } /* 21~30: 빨강 */
+        .ball-31 { background: #aaa; }    /* 31~40: 회색 */
+        .ball-41 { background: #b0d840; } /* 41~45: 초록 */
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #357abd; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>로또 번호 추천</h1>
+    <div id="result"></div>
+    <button onclick="generateLottoSets()">새로운 번호 생성</button>
+</div>
+
+<script>
+    function getBallColorClass(num) {
+        if (num <= 10) return 'ball-1';
+        if (num <= 20) return 'ball-11';
+        if (num <= 30) return 'ball-21';
+        if (num <= 40) return 'ball-31';
+        return 'ball-41';
+    }
+
+    function generateLottoSets() {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = ''; 
+
+        for (let i = 0; i < 5; i++) {
+            const numbers = [];
+            while (numbers.length < 6) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            numbers.sort((a, b) => a - b); 
+
+            const row = document.createElement('div');
+            row.className = 'lotto-row';
+
+            numbers.forEach(num => {
+                const ball = document.createElement('div');
+                ball.className = `ball ${getBallColorClass(num)}`;
+                ball.innerText = num;
+                row.appendChild(ball);
+            });
+
+            resultDiv.appendChild(row);
+        }
+    }
+
+    window.onload = generateLottoSets;
+</script>
+
+</body>
+</html>
