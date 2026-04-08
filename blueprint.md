@@ -1,28 +1,35 @@
-# Project Blueprint
+# Project Blueprint: Fortune Lotto
 
 ## Overview
+A modern, framework-less web application that provides a beautiful and interactive Lottery Number Generator. Built with modern CSS (Variables, Flexbox) and JavaScript (ES6+), prioritizing a clean user experience and accessibility.
 
-This project is a web-based application that provides various interactive tools and features, starting with a Lottery Number Generator. The application is built using modern, framework-less web technologies, including Web Components, to ensure modularity, reusability, and encapsulation. The design prioritizes a clean, visually appealing, and accessible user experience.
-
-## Implemented Features
+## Features
 
 ### V1: Lottery Number Generator
+*   **Unique Number Generation**: Generates 6 unique random numbers between 1 and 45.
+*   **Multiple Games**: Generates 5 games at once for a comprehensive look.
+*   **Visual Color Coding**: 
+    *   1-10: Yellow
+    *   11-20: Blue
+    *   21-30: Red
+    *   31-40: Gray
+    *   41-45: Green
+*   **Responsive Design**: Works perfectly on mobile and desktop devices.
+*   **Modern Aesthetics**: Clean typography (Pretendard), subtle shadows, and a "lifted" card design.
 
-*   **Custom Element (`<lotto-generator>`)**: The entire feature is encapsulated as a Web Component.
-*   **Number Generation**:
-    *   Generates 6 unique random numbers between 1 and 45.
-    *   The generated numbers are sorted in ascending order for easy reading.
-*   **User Interface**:
-    *   A clean and modern card-based design.
-    *   A prominent "Generate Numbers" button to trigger the action.
-    *   The generated numbers are displayed in colored circles.
-    *   Responsive design that adapts to different screen sizes.
-*   **Styling**:
-    *   **Shadow DOM**: All styles are encapsulated within the component's Shadow DOM to prevent conflicts.
-    *   **CSS Variables**: Used for theming and easy maintenance of colors.
-    *   **Visual Effects**: Subtle shadows and gradients are used to create depth and a premium feel.
-    *   **Typography**: Clear and legible fonts are used for titles and numbers.
+### V2: Theme Customization (Dark/Light Mode)
+*   **Dual Themes**: Full support for both White (Light) and Dark modes.
+*   **Smooth Transitions**: CSS transitions for background and color changes.
+*   **Persistence**: Saves the user's theme preference in `localStorage`.
+*   **Intuitive UI**: A floating toggle button with dynamic icons (☀️/🌙).
 
-## Current Plan
+## Technical Implementation
+*   **HTML5**: Semantic structure.
+*   **CSS3**: Custom properties (CSS Variables) for theming, Flexbox for layout.
+*   **JavaScript**: DOM manipulation, Event Listeners, and LocalStorage API.
+*   **Design Standards**: Follows "Baseline" modern web standards for maximum compatibility.
 
-The current plan is to build and implement the V1 of the Lottery Number Generator as described above. This involves creating the necessary HTML, CSS, and JavaScript files, defining the Web Component, and ensuring it is correctly displayed and functional in the browser.
+## Future Plans
+*   Number frequency analysis.
+*   Lucky number inclusion/exclusion.
+*   Share results via social media.

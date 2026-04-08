@@ -43,51 +43,68 @@ class LottoGenerator extends HTMLElement {
                     font-size: 18px;
                     font-weight: bold;
                     color: var(--text-color);
-                }
+}
 
-                button {
-                    background-color: var(--primary-color);
-                    color: white;
-                    border: none;
-                    border-radius: 8px;
-                    padding: 12px 24px;
-                    font-size: 16px;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
-                }
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+});
 
-                button:hover {
-                    background-color: #357abd;
-                }
-            </style>
-            <h2>Lotto Number Generator</h2>
-            <div class="numbers">
-                <div class="number">?</div>
-                <div class="number">?</div>
-                <div class="number">?</div>
-                <div class="number">?</div>
-                <div class="number">?</div>
-                <div class="number">?</div>
-            </div>
-            <button id="generate">Generate Numbers</button>
-        `;
+// Lotto Generation Logic
+function getBallClass(num) {
+    if (num <= 10) return 'n1';
+    if (num <= 20) return 'n11';
+    if (num <= 30) return 'n21';
+    if (num <= 40) return 'n31';
+    return 'n41';
+}
 
-        this.shadowRoot.getElementById('generate').addEventListener('click', () => this.generateNumbers());
-    }
+function generateLotto() {
+    const container = document.getElementById('lotto-display');
+    container.innerHTML = ''; // Clear previous
 
-    generateNumbers() {
-        const numbers = new Set();
-        while (numbers.size < 6) {
-            numbers.add(Math.floor(Math.random() * 45) + 1);
+    for (let i = 1; i <= 5; i++) {
+        let numbers = [];
+        while (numbers.length < 6) {
+            let n = Math.floor(Math.random() * 45) + 1;
+            if (!numbers.includes(n)) {
+                numbers.push(n);
+            }
         }
+        numbers.sort((a, b) => a - b);
 
-        const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-        const numberElements = this.shadowRoot.querySelectorAll('.number');
+        const row = document.createElement('div');
+        row.className = 'row';
         
-        sortedNumbers.forEach((number, index) => {
-            numberElements[index].textContent = number;
+        const label = document.createElement('span');
+        label.className = 'label';
+        label.innerText = `게임 ${i}`;
+        row.appendChild(label);
+        
+        const ballsContainer = document.createElement('div');
+        ballsContainer.className = 'balls-container';
+
+        numbers.forEach(num => {
+            const ball = document.createElement('div');
+            ball.className = 'ball ' + getBallClass(num);
+            ball.innerText = num;
+            ballsContainer.appendChild(ball);
         });
+
+        row.appendChild(ballsContainer);
+        container.appendChild(row);
     }
 }
 
-customElements.define('lotto-generator', LottoGenerator);
+// Event Listeners
+generateBtn.addEventListener('click', generateLotto);
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    generateLotto();
+});
